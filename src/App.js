@@ -6,6 +6,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Header from './components/Header';
 import Register from './components/Register';
+import PrivateRoute from './routes/PrivateRoute';
+import Orders from './components/Orders';
 
 function App() {
 
@@ -30,6 +32,10 @@ function App() {
       {
         path:'/register',
         element:<Register></Register>
+      },
+      {
+        path:'/orders',
+        element: <PrivateRoute><Orders></Orders></PrivateRoute>
       }
       ]
     }

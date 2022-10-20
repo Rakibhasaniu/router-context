@@ -10,7 +10,8 @@ import app from '../../firebase/firebase.init';
 
 const UserContext = ({children}) => {
 
-    const [user, setUser] = useState({displayName: 'Rakib'});
+    const [user, setUser] = useState({});
+    const [loading , setLoading] = useState(true)
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -32,6 +33,7 @@ const UserContext = ({children}) => {
     useEffect( () => {
          const unsubcribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
+            setLoading(false);
             console.log(setUser);
         })
         return () => {
@@ -40,7 +42,7 @@ const UserContext = ({children}) => {
     }, [])
 
    
-    const authInfo = {user, cretaeUser, signIn, logOut, signinWithGoogle};
+    const authInfo = {user, cretaeUser, signIn, logOut, signinWithGoogle, loading};
 
     return (
         <AuthContext.Provider value={authInfo}>
